@@ -1,5 +1,14 @@
 # Laravel DNS
 
+[![Latest Version](http://img.shields.io/packagist/v/astrotomic/laravel-dns.svg?label=Release&style=for-the-badge)](https://packagist.org/packages/astrotomic/laravel-dns)
+[![MIT License](https://img.shields.io/github/license/Astrotomic/laravel-dns.svg?label=License&color=blue&style=for-the-badge)](https://github.com/Astrotomic/laravel-dns/blob/master/LICENSE)
+[![Offset Earth](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-green?style=for-the-badge)](https://plant.treeware.earth/Astrotomic/laravel-dns)
+[![Larabelles](https://img.shields.io/badge/Larabelles-%F0%9F%A6%84-lightpink?style=for-the-badge)](https://www.larabelles.com/)
+
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Astrotomic/laravel-dns/pest?style=flat-square&logoColor=white&logo=github&label=Tests)](https://github.com/Astrotomic/laravel-dns/actions?query=workflow%3Apest)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Astrotomic/laravel-dns/php-cs-fixer?style=flat-square&logoColor=white&logo=github&label=Code+Style)](https://github.com/Astrotomic/laravel-dns/actions?query=workflow%3Aphp-cs-fixer)
+[![Total Downloads](https://img.shields.io/packagist/dt/astrotomic/laravel-dns.svg?label=Downloads&style=flat-square)](https://packagist.org/packages/astrotomic/laravel-dns)
+
 ## Installation
 
 ```bash
