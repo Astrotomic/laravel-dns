@@ -1,3 +1,5 @@
+name: "php-cs-fixer"
+
 on: [push]
 
 jobs:
