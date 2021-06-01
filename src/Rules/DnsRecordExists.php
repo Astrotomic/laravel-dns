@@ -3,12 +3,11 @@
 namespace Astrotomic\Dns\Rules;
 
 use Astrotomic\Dns\Dns;
+use Astrotomic\Dns\Domain;
 use Closure;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Lang;
-use Spatie\Dns\Exceptions\InvalidArgument;
-use Spatie\Dns\Support\Domain;
 
 class DnsRecordExists implements Rule
 {
@@ -37,9 +36,9 @@ class DnsRecordExists implements Rule
             return false;
         }
 
-        try {
-            $domain = new Domain($value);
-        } catch (InvalidArgument) {
+        $domain = Domain::parse($value);
+
+        if ($domain === null) {
             return false;
         }
 
