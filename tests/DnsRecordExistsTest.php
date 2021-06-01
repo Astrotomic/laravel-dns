@@ -1,7 +1,6 @@
 <?php
 
 use Astrotomic\Dns\Rules\DnsRecordExists;
-use Spatie\Dns\Records\A;
 use Spatie\Dns\Records\TXT;
 
 it('validates that any record exists', function () {
@@ -14,7 +13,7 @@ it('validates that any record exists', function () {
 it('validates that URL is reachable', function () {
     expect(
         DnsRecordExists::make()
-            ->expect(DNS_A|DNS_AAAA|DNS_CNAME)
+            ->expect(DNS_A | DNS_AAAA | DNS_CNAME)
             ->passes('', 'https://astrotomic.info')
     )->toBeTrue();
 });
@@ -23,7 +22,7 @@ it('validates that address is mailable', function () {
     expect(
         DnsRecordExists::make()
             ->expect(DNS_MX)
-            ->expect(DNS_TXT, fn(TXT $record): bool => str_starts_with($record->txt(), 'v=spf1 '))
+            ->expect(DNS_TXT, fn (TXT $record): bool => str_starts_with($record->txt(), 'v=spf1 '))
             ->passes('', 'dns@astrotomic.info')
     )->toBeTrue();
 });
@@ -46,7 +45,7 @@ it('fails when record type is not present', function () {
 it('fails when expectation is not fulfilled', function () {
     expect(
         DnsRecordExists::make()
-            ->expect(DNS_ALL, fn() => false)
+            ->expect(DNS_ALL, fn () => false)
             ->passes('', 'astrotomic.info')
     )->toBeFalse();
 });

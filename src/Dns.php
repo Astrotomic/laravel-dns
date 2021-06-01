@@ -14,8 +14,7 @@ class Dns extends SpatieDns
     public function records(
         string | Stringable $search,
         int | string | array $types = DNS_ALL
-    ): Collection
-    {
+    ): Collection {
         return collect($this->getRecords($search, $types));
     }
 }

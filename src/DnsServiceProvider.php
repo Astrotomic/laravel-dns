@@ -16,7 +16,7 @@ class DnsServiceProvider extends ServiceProvider
 
         $this->app->singleton(Factory::class);
 
-        $this->app->singleton(Dns::class, static function(Container $app): Dns {
+        $this->app->singleton(Dns::class, static function (Container $app): Dns {
             return new Dns(
                 $app->make(Types::class),
                 $app->make(Factory::class)

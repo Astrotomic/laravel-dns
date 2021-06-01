@@ -23,16 +23,16 @@ class DnsRecordExists implements Rule
     {
     }
 
-    public function expect(int|string $type, ?Closure $expectation = null): static
+    public function expect(int | string $type, ?Closure $expectation = null): static
     {
-        $this->expectations[$type] = $expectation ?? fn() => true;
+        $this->expectations[$type] = $expectation ?? fn () => true;
 
         return $this;
     }
 
     public function passes($attribute, $value): bool
     {
-        if (!is_string($value)) {
+        if (! is_string($value)) {
             return false;
         }
 
@@ -47,7 +47,8 @@ class DnsRecordExists implements Rule
         }
 
         return collect($this->expectations)
-            ->every(fn (Closure $expectation, int|string $type): bool => $this->dns->records($domain, $type)
+            ->every(
+                fn (Closure $expectation, int | string $type): bool => $this->dns->records($domain, $type)
                 ->filter($expectation)
                 ->isNotEmpty()
             );

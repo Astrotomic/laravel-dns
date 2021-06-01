@@ -20,14 +20,15 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/contracts": " ^8.0",
-        "illuminate/container": " ^8.0",
-        "illuminate/collections": " ^8.0",
+        "illuminate/collections": "^8.0",
+        "illuminate/container": "^8.0",
+        "illuminate/contracts": "^8.0",
         "illuminate/support": "^8.0",
-        "illuminate/translation": " ^8.0",
+        "illuminate/translation": "^8.0",
         "spatie/dns": "^2.0.2"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.19",
         "orchestra/testbench": "^6.0",
         "pestphp/pest": "^1.0",
         "pestphp/pest-plugin-laravel": "^1.0"
@@ -51,5 +52,10 @@
         "psr-4": {
             "Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "fix": "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist",
+        "test": "vendor/bin/pest",
+        "test-coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage"
     }
 }

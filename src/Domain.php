@@ -17,15 +17,17 @@ class Domain extends SpatieDomain implements Castable, JsonSerializable
 
     /**
      * @param string|\Stringable $domain
-     * @return static
+     *
      * @throws \Spatie\Dns\Exceptions\InvalidArgument
+     *
+     * @return static
      */
-    public static function make(string|Stringable $domain): static
+    public static function make(string | Stringable $domain): static
     {
         return new static($domain);
     }
 
-    public static function parse(string|Stringable|null $domain): ?string
+    public static function parse(string | Stringable | null $domain): ?string
     {
         if (empty($domain)) {
             return null;

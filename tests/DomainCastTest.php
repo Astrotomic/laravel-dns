@@ -1,8 +1,8 @@
 <?php
 
 use Astrotomic\Dns\Domain;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Tests\Models\Team;
 
 it('it casts empty raw value to null', function ($domain) {
     expect(Team::new(['domain' => $domain])->domain)->toBeNull();
@@ -41,20 +41,3 @@ it('it casts value to sanitized string', function ($domain) {
     'stringable' => Str::of('https://astrotomic.info'),
     'domain' => Domain::make('https://astrotomic.info'),
 ]);
-
-/**
- * @property \Astrotomic\Dns\Domain|null $domain
- */
-class Team extends Model
-{
-    protected $fillable = ['domain'];
-
-    protected $casts = [
-        'domain' => Domain::class,
-    ];
-
-    public static function new(array $attributes = []): self
-    {
-        return tap(new static(), fn(Team $team) => $team->setRawAttributes($attributes));
-    }
-}

@@ -36,4 +36,3 @@ it('is JSON serializable', function () {
 it('throws exception for invalid domain', function () {
     Domain::make('');
 })->expectException(InvalidArgument::class);
-
