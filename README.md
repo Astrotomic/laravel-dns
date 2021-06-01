@@ -72,7 +72,9 @@ protected $casts = [
 ```php
 use Astrotomic\Dns\Domain;
 
-$domain = (string) Domain::make('dns@astrotomic.info');
+/** @var \Astrotomic\Dns\Domain $domain */
+$domain = Domain::make('dns@astrotomic.info');
+
+/** @var string|null $domain */
 $domain = Domain::parse('dns@astrotomic.info');
-// astrotomic.info
 ```

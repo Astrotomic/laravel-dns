@@ -25,8 +25,12 @@ class Domain extends SpatieDomain implements Castable, JsonSerializable
         return new static($domain);
     }
 
-    public static function parse(string|Stringable $domain): ?string
+    public static function parse(string|Stringable|null $domain): ?string
     {
+        if (empty($domain)) {
+            return null;
+        }
+
         try {
             return static::make($domain);
         } catch (InvalidArgument) {

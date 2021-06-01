@@ -20,7 +20,7 @@ class DomainCast implements CastsAttributes
             return null;
         }
 
-        return new Domain($value);
+        return Domain::make($value);
     }
 
     /**
@@ -32,10 +32,6 @@ class DomainCast implements CastsAttributes
      */
     public function set($model, string $key, $value, array $attributes): ?string
     {
-        if (empty(strval($value))) {
-            return null;
-        }
-
-        return (string) new Domain(strval($value));
+        return Domain::parse($value);
     }
 }
