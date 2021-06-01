@@ -1,6 +1,6 @@
 <?php
 
-$finder = \PhpCsFixer\Finder::create()
+$finder = (new \PhpCsFixer\Finder())
     ->notPath('vendor')
     ->ignoreDotFiles(true)
     ->ignoreVCS(true)
@@ -8,7 +8,7 @@ $finder = \PhpCsFixer\Finder::create()
     ->in(__DIR__);
 
 return (new \PhpCsFixer\Config())
-    ->setRules(array_merge(require '.php_cs.laravel', [
+    ->setRules(array_merge(require '.php-cs-fixer.laravel.php', [
         '@PSR2' => true,
         '@PSR12' => true,
         'no_unused_imports' => true,
