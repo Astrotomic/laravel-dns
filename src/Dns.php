@@ -5,7 +5,6 @@ namespace Astrotomic\Dns;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
 use Spatie\Dns\Dns as SpatieDns;
-use Spatie\Dns\Support\Domain;
 use Stringable;
 
 class Dns extends SpatieDns
@@ -13,7 +12,7 @@ class Dns extends SpatieDns
     use Macroable;
 
     public function records(
-        string | Domain | Stringable $search,
+        string | Stringable $search,
         int | string | array $types = DNS_ALL
     ): Collection
     {
