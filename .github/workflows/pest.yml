@@ -1,0 +1,29 @@
+on:
+  push:
+  pull_request:
+
+jobs:
+  pest:
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ["8.0"]
+        laravel: ["^8.0"]
+        stability: ["prefer-lowest", "prefer-stable"]
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: xdebug
+
+      - run: |
+          composer require --dev "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      - run: vendor/bin/pest
