@@ -27,6 +27,11 @@
         "illuminate/translation": " ^8.0",
         "spatie/dns": "^2.0.2"
     },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "pestphp/pest": "^1.0",
+        "pestphp/pest-plugin-laravel": "^1.0"
+    },
     "config": {
         "sort-packages": true
     },
@@ -44,7 +49,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Astrotomic\\Dns\\Tests\\": "tests"
+            "Tests\\": "tests"
         }
     }
 }
