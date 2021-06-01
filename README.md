@@ -17,7 +17,8 @@ $records = Dns::records('astrotomic.info', DNS_A);
 
 ```php
 use Astrotomic\Dns\Rules\DnsRecordExists;
-use Spatie\Dns\Records\A;use Spatie\Dns\Records\TXT;
+use Spatie\Dns\Records\A;
+use Spatie\Dns\Records\TXT;
 
 return [
     'url' => [
