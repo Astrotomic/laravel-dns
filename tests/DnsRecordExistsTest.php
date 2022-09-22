@@ -27,10 +27,10 @@ it('validates that address is mailable', function () {
     )->toBeTrue();
 });
 
-it('fails when no record exists', function () {
+it('fails when domain does not exist', function () {
     expect(
         DnsRecordExists::make()
-            ->passes('', 'foo.astrotomic.info')
+            ->passes('', 'foo.astrotomic')
     )->toBeFalse();
 });
 

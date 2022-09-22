@@ -49,8 +49,8 @@ class DnsRecordExists implements Rule
         return collect($this->expectations)
             ->every(
                 fn (Closure $expectation, int | string $type): bool => $this->dns->records($domain, $type)
-                ->filter($expectation)
-                ->isNotEmpty()
+                    ->filter($expectation)
+                    ->isNotEmpty()
             );
     }
 
