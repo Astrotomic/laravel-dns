@@ -11,7 +11,7 @@ jobs:
       fail-fast: true
       matrix:
         php: ["8.0"]
-        laravel: ["^9.0"]
+        laravel: ["^8.0", "^9.0"]
         stability: ["prefer-lowest", "prefer-stable"]
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
