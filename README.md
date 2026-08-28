@@ -5,11 +5,11 @@
 [![Offset Earth](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-green?style=for-the-badge)](https://plant.treeware.earth/Astrotomic/laravel-dns)
 [![Larabelles](https://img.shields.io/badge/Larabelles-%F0%9F%A6%84-lightpink?style=for-the-badge)](https://www.larabelles.com/)
 
-![](https://img.shields.io/badge/PHP-^8.0-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![](https://img.shields.io/badge/Laravel-^8.0-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![](https://img.shields.io/badge/PHP-^8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![](https://img.shields.io/badge/Laravel-9--13-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Astrotomic/laravel-dns/pest?style=flat-square&logoColor=white&logo=github&label=Tests)](https://github.com/Astrotomic/laravel-dns/actions?query=workflow%3Apest)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Astrotomic/laravel-dns/php-cs-fixer?style=flat-square&logoColor=white&logo=github&label=Code+Style)](https://github.com/Astrotomic/laravel-dns/actions?query=workflow%3Aphp-cs-fixer)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Astrotomic/laravel-dns/phpunit.yml?branch=main&style=flat-square&logoColor=white&logo=github&label=Tests)](https://github.com/Astrotomic/laravel-dns/actions/workflows/phpunit.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Astrotomic/laravel-dns/php-cs-fixer.yml?branch=main&style=flat-square&logoColor=white&logo=github&label=Code+Style)](https://github.com/Astrotomic/laravel-dns/actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/astrotomic/laravel-dns.svg?label=Downloads&style=flat-square)](https://packagist.org/packages/astrotomic/laravel-dns)
 
 ## Installation
@@ -58,35 +58,65 @@ return [
     'domain' => [
         'required',
         'string',
-        // verify that entered domain
-        // has an A record
-        // pointing to our IP-address
-        DnsRecordExists::make()
-            ->expect(DNS_A, fn(A $record): bool => $record->ip() === '127.0.0.1'),
-    ],
-    'something' => [
-        'required',
-        'string',
-        // verify that value is something with DNS
         DnsRecordExists::make(),
     ],
 ];
 ```
 
-```php
-use Astrotomic\Dns\Domain;
-
-protected $casts = [
-    'domain' => Domain::class,
-];
-```
+## Domain value object
 
 ```php
 use Astrotomic\Dns\Domain;
 
-/** @var \Astrotomic\Dns\Domain $domain */
-$domain = Domain::make('dns@astrotomic.info');
-
-/** @var string|null $domain */
-$domain = Domain::parse('dns@astrotomic.info');
+$domain = Domain::make('https://astrotomic.info/foo/bar');
+$domain->getDomain(); // astrotomic.info
 ```
+
+The domain value object can also be used as an Eloquent cast.
+
+```php
+use Astrotomic\Dns\Domain;
+use Illuminate\Database\Eloquent\Model;
+
+class Team extends Model
+{
+    protected $casts = [
+        'domain' => Domain::class,
+    ];
+}
+```
+
+## Testing
+
+```bash
+composer test
+```
+
+## Contributing
+
+Please see [CONTRIBUTING](https://github.com/Astrotomic/.github/blob/master/CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email security@astrotomic.info instead of using the issue tracker.
+
+## Credits
+
+- [Tom Herrmann](https://github.com/Gummibeer)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+## Treeware
+
+You're free to use this package, but if it makes it to your production environment you are required to buy the world a tree.
+
+It's now a requirement to contribute to my climate action fund on [Ecologi](https://ecologi.com/astrotomic).
+
+This way you can be sure that you actually plant trees and my local environment is not affected by it.
+
+## Larabelles
+
+If you want to show your support for women in tech, I strongly encourage you to buy a [Larabelles](https://www.larabelles.com/) product.
