@@ -1,43 +1,55 @@
 <?php
 
+namespace Tests;
+
 use Astrotomic\Dns\Domain;
 use Illuminate\Support\Str;
 use Tests\Models\Team;
 
-it('it casts empty raw value to null', function ($domain) {
-    expect(Team::new(['domain' => $domain])->domain)->toBeNull();
-})->with([
-    'null' => null,
-    'empty' => '',
-]);
+final class DomainCastTest extends TestCase
+{
+    public function test_it_casts_empty_raw_value_to_null(): void
+    {
+        foreach ([null, ''] as $domain) {
+            $this->assertNull(Team::new(['domain' => $domain])->domain);
+        }
+    }
 
-it('it casts raw value to domain instance', function ($domain) {
-    expect(Team::new(['domain' => $domain])->domain)
-        ->toBeInstanceOf(Domain::class)
-        ->toEqual('astrotomic.info');
-})->with([
-    'string' => 'https://astrotomic.info',
-    'stringable' => Str::of('https://astrotomic.info'),
-    'domain' => Domain::make('https://astrotomic.info'),
-]);
+    public function test_it_casts_raw_value_to_domain_instance(): void
+    {
+        foreach ([
+            'https://astrotomic.info',
+            Str::of('https://astrotomic.info'),
+            Domain::make('https://astrotomic.info'),
+        ] as $domain) {
+            $value = Team::new(['domain' => $domain])->domain;
 
-it('it casts empty value to null', function ($domain) {
-    $team = Team::new();
-    $team->domain = $domain;
-    expect($team->getAttributes()['domain'])->toBeNull();
-})->with([
-    'null' => null,
-    'empty' => '',
-]);
+            $this->assertInstanceOf(Domain::class, $value);
+            $this->assertSame('astrotomic.info', (string) $value);
+        }
+    }
 
-it('it casts value to sanitized string', function ($domain) {
-    $team = Team::new();
-    $team->domain = $domain;
-    expect($team->getAttributes()['domain'])
-        ->toBeString()
-        ->toEqual('astrotomic.info');
-})->with([
-    'string' => 'https://astrotomic.info',
-    'stringable' => Str::of('https://astrotomic.info'),
-    'domain' => Domain::make('https://astrotomic.info'),
-]);
+    public function test_it_casts_empty_value_to_null(): void
+    {
+        foreach ([null, ''] as $domain) {
+            $team = Team::new();
+            $team->domain = $domain;
+
+            $this->assertNull($team->getAttributes()['domain']);
+        }
+    }
+
+    public function test_it_casts_value_to_sanitized_string(): void
+    {
+        foreach ([
+            'https://astrotomic.info',
+            Str::of('https://astrotomic.info'),
+            Domain::make('https://astrotomic.info'),
+        ] as $domain) {
+            $team = Team::new();
+            $team->domain = $domain;
+
+            $this->assertSame('astrotomic.info', $team->getAttributes()['domain']);
+        }
+    }
+}

@@ -1,38 +1,48 @@
 <?php
 
+namespace Tests;
+
 use Astrotomic\Dns\Domain;
 use Illuminate\Support\Str;
 use Spatie\Dns\Exceptions\InvalidArgument;
 
-it('is makeable', function () {
-    expect(Domain::make('https://astrotomic.info'))
-        ->toBeInstanceOf(Domain::class)
-        ->toEqual('astrotomic.info');
-});
+final class DomainTest extends TestCase
+{
+    public function test_it_is_makeable(): void
+    {
+        $domain = Domain::make('https://astrotomic.info');
 
-it('parses domain', function ($domain) {
-    expect(Domain::parse($domain))
-        ->toBeString()
-        ->toEqual('astrotomic.info');
-})->with([
-    'string' => 'https://astrotomic.info',
-    'stringable' => Str::of('https://astrotomic.info'),
-    'domain' => Domain::make('https://astrotomic.info'),
-]);
+        $this->assertInstanceOf(Domain::class, $domain);
+        $this->assertSame('astrotomic.info', (string) $domain);
+    }
 
-it('can parse from empty', function ($domain) {
-    expect(Domain::parse($domain))->toBeNull();
-})->with([
-    'null' => null,
-    'empty' => '',
-]);
+    public function test_it_parses_domain(): void
+    {
+        foreach ([
+            'https://astrotomic.info',
+            Str::of('https://astrotomic.info'),
+            Domain::make('https://astrotomic.info'),
+        ] as $domain) {
+            $this->assertSame('astrotomic.info', Domain::parse($domain));
+        }
+    }
 
-it('is JSON serializable', function () {
-    expect(json_encode(Domain::make('https://astrotomic.info')))
-        ->toBeString()
-        ->toEqual('"astrotomic.info"');
-});
+    public function test_it_can_parse_from_empty(): void
+    {
+        foreach ([null, ''] as $domain) {
+            $this->assertNull(Domain::parse($domain));
+        }
+    }
 
-it('throws exception for invalid domain', function () {
-    Domain::make('');
-})->expectException(InvalidArgument::class);
+    public function test_it_is_json_serializable(): void
+    {
+        $this->assertSame('"astrotomic.info"', json_encode(Domain::make('https://astrotomic.info')));
+    }
+
+    public function test_it_throws_exception_for_invalid_domain(): void
+    {
+        $this->expectException(InvalidArgument::class);
+
+        Domain::make('');
+    }
+}
