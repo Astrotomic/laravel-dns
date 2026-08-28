@@ -13,7 +13,7 @@ class DomainCast implements CastsAttributes
      * @param null|string|\Stringable $value
      * @param array $attributes
      *
-     * @return Domain|null
+     * @return \Astrotomic\Dns\Domain|null
      */
     public function get($model, string $key, $value, array $attributes): ?Domain
     {
