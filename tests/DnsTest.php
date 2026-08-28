@@ -1,11 +1,21 @@
 <?php
 
+namespace Tests;
+
 use Astrotomic\Dns\Facades\Dns;
 use Illuminate\Support\Collection;
 use Spatie\Dns\Records\Record;
 
-it('is returns a collection of records', function () {
-    expect(Dns::records('https://astrotomic.info'))
-        ->toBeInstanceOf(Collection::class)
-        ->each->toBeInstanceOf(Record::class);
-});
+final class DnsTest extends TestCase
+{
+    public function test_it_returns_a_collection_of_records(): void
+    {
+        $records = Dns::records('https://astrotomic.info');
+
+        $this->assertInstanceOf(Collection::class, $records);
+
+        foreach ($records as $record) {
+            $this->assertInstanceOf(Record::class, $record);
+        }
+    }
+}

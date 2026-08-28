@@ -5,11 +5,11 @@
 [![Offset Earth](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-green?style=for-the-badge)](https://plant.treeware.earth/Astrotomic/laravel-dns)
 [![Larabelles](https://img.shields.io/badge/Larabelles-%F0%9F%A6%84-lightpink?style=for-the-badge)](https://www.larabelles.com/)
 
-![](https://img.shields.io/badge/PHP-^8.0-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![](https://img.shields.io/badge/Laravel-^8.0-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![](https://img.shields.io/badge/PHP-^8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![](https://img.shields.io/badge/Laravel-9--13-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Astrotomic/laravel-dns/pest?style=flat-square&logoColor=white&logo=github&label=Tests)](https://github.com/Astrotomic/laravel-dns/actions?query=workflow%3Apest)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Astrotomic/laravel-dns/php-cs-fixer?style=flat-square&logoColor=white&logo=github&label=Code+Style)](https://github.com/Astrotomic/laravel-dns/actions?query=workflow%3Aphp-cs-fixer)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Astrotomic/laravel-dns/phpunit.yml?branch=main&style=flat-square&logoColor=white&logo=github&label=Tests)](https://github.com/Astrotomic/laravel-dns/actions/workflows/phpunit.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Astrotomic/laravel-dns/php-cs-fixer.yml?branch=main&style=flat-square&logoColor=white&logo=github&label=Code+Style)](https://github.com/Astrotomic/laravel-dns/actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/astrotomic/laravel-dns.svg?label=Downloads&style=flat-square)](https://packagist.org/packages/astrotomic/laravel-dns)
 
 ## Installation
