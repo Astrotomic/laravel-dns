@@ -6,7 +6,7 @@ use Astrotomic\Dns\Domain;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property Domain|null $domain
+ * @property \Astrotomic\Dns\Domain|null $domain
  */
 class Team extends Model
 {
