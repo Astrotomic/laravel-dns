@@ -16,9 +16,9 @@ class Domain extends SpatieDomain implements Castable, JsonSerializable
     use Macroable;
 
     /**
-     * @param string|\Stringable $domain
+     * @param string|Stringable $domain
      *
-     * @throws \Spatie\Dns\Exceptions\InvalidArgument
+     * @throws InvalidArgument
      *
      * @return static
      */
