@@ -38,7 +38,7 @@ final class DnsRecordExistsTest extends TestCase
     {
         $this->assertFalse(
             DnsRecordExists::make()
-                ->passes('', 'foo.astrotomic')
+                ->passes('', 'foo.invalid')
         );
     }
 
