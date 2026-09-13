@@ -56,5 +56,7 @@ jobs:
       - run: |
           composer require --dev "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        env:
+          COMPOSER_POLICY_ADVISORIES_BLOCK: 0
 
       - run: vendor/bin/phpunit
