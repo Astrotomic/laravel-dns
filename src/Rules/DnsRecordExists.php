@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Lang;
 
 class DnsRecordExists implements Rule
 {
-    /** @var array<int|string, \Closure> */
+    /** @var array<int|string, Closure> */
     protected array $expectations = [];
 
     public static function make(): static
